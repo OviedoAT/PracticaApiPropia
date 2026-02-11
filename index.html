@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Practica de API del Tarot</h1>
+        <p>Busca: <input type="text" id="inputBusqueda" placeholder="Busca tu carta"></p>
+        <button id="btnBusqueda">Buscar</button>
+    </header>
+
+    <main class="layout">
+    
+    <section class="contenido">
+        <div id="resultados" class="cards-container"></div>
+    </section>
+
+    <aside id="detalleCarta" class="detalle">
+        <h2>Detalle</h2>
+        <p>Selecciona una carta para ver su información.</p>
+    </aside>
+
+</main>
+
+</body>
+
+<script src="apiTarot.js"></script>
+</html>
