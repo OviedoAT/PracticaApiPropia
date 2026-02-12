@@ -4,7 +4,10 @@ const inputBusqueda = document.getElementById("inputBusqueda");
 const btnBusqueda = document.getElementById("btnBusqueda");
 const resultadosDiv = document.getElementById("resultados");
 const detalleDiv = document.getElementById("detalleCarta");
-const tipoSelect = document.getElementById("tipoPalos");
+const detalleRandom = document.getElementById("cartaRandomDetalle")
+const tipoSelect = document.getElementById("tipoCarta");
+const btnBusquedaTipo = document.getElementById("btnTipoBuscar");
+const btnRandom = document.getElementById("btnRandom");
 
 const cargarTodasLasCartas = () => {
     fetch(BASE_URL)
@@ -38,7 +41,24 @@ const buscarCartas = () => {
 
         return;
     }
+
 };
+
+const buscarTipo = () => {
+    const texto = tipoSelect.value;
+    if (texto !== "") {
+        fetch(`${BASE_URL}/search?type=${texto}`)
+            .then(response => response.json())
+            .then(data => {
+                renderizarCards(data.cards);
+            })
+            .catch(error => {
+                console.error("Error en búsqueda por nombre:", error);
+            });
+        return;
+    }
+    tipoSelect.value = "";
+}
 
 const renderizarCards = (cartas) => {
 
@@ -56,6 +76,7 @@ const renderizarCards = (cartas) => {
 
         card.innerHTML = `
             <h4>${carta.name}</h4>
+            <h4>${carta.type}</h4>
         `;
 
         card.addEventListener("click", () => {
@@ -87,6 +108,25 @@ const obtenerDetalleCarta = (nombre) => {
         });
 };
 
+const obtenerRandomCard = () => {
+    fetch(`${BASE_URL}/random`)
+        .then(response => response.json())
+        .then(data => {
+            const cartaRandom = data.cards[0];
+
+            detalleRandom.innerHTML = `
+        <h2>Random Card</h2>
+        <h3>${cartaRandom.name}</h3>
+        <p><strong>Tipo:</strong> ${cartaRandom.type}</p>
+        <p><strong>Significado (Derecho):</strong> ${cartaRandom.meaning_up}</p>
+        <p><strong>Significado (Invertido):</strong> ${cartaRandom.meaning_rev}</p>
+        <p><strong>Descripción:</strong> ${cartaRandom.desc}
+        `;
+        })
+}
+
 window.addEventListener("DOMContentLoaded", cargarTodasLasCartas);
 
 btnBusqueda.addEventListener("click", buscarCartas);
+btnBusquedaTipo.addEventListener("click", buscarTipo);
+btnRandom.addEventListener("click", obtenerRandomCard);

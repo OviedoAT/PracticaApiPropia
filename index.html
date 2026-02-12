@@ -11,24 +11,43 @@
 <body>
     <header>
         <h1>Practica de API del Tarot</h1>
-        <p>Busca: <input type="text" id="inputBusqueda" placeholder="Busca tu carta"></p>
-        <button id="btnBusqueda">Buscar</button>
+        <p>Busca: <input type="text" id="inputBusqueda" placeholder="Busca tu carta"> <button
+                id="btnBusqueda">Buscar</button></p>
+        <p>
+            Busca por tipo:
+            <select id="tipoCarta">
+                <option value="">Selecciona Uno</option>
+                <option value="major">Mayor</option>
+                <option value="minor">Menor</option>
+            </select>
+            <button id="btnTipoBuscar">Buscar Tipo</button>
+        </p>
+        <p>
+            obten una carta random:
+            <button id="btnRandom">Random card</button>
+        </p>
     </header>
 
     <main class="layout">
-    
-    <section class="contenido">
-        <div id="resultados" class="cards-container"></div>
-    </section>
 
-    <aside id="detalleCarta" class="detalle">
-        <h2>Detalle</h2>
-        <p>Selecciona una carta para ver su información.</p>
-    </aside>
+        <section class="contenido">
+            <div id="resultados" class="cards-container"></div>
+        </section>
 
-</main>
+        <aside id="cartaRandomDetalle" class="detalleRandom">
+            <h2>Carta Random</h2>
+            <p>Prueba suerte y ve que sale...</p>
+        </aside>
+
+        <aside id="detalleCarta" class="detalle">
+            <h2>Detalle</h2>
+            <p>Selecciona una carta para ver su información.</p>
+        </aside>
+
+    </main>
 
 </body>
 
 <script src="apiTarot.js"></script>
+
 </html>
